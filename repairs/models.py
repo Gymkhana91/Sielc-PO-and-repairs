@@ -3,7 +3,7 @@ from django.db import models
 
 class Order(models.Model):
     DEVICE_CHOICES = [
-        ('LC-4000', 'LC-4000'),
+        ('xxz', 'LC'),
         ('GC-2020', 'GC-2020'),
         ('Prep Station', 'Prep Station'),
         ('HPLC-Plus', 'HPLC-Plus'),
