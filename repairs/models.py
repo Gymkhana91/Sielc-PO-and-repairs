@@ -1,7 +1,15 @@
 from django.db import models
 
+
 class Order(models.Model):
-    device = models.CharField(max_length=100)
+    DEVICE_CHOICES = [
+        ('LC-4000', 'LC-4000'),
+        ('GC-2020', 'GC-2020'),
+        ('Prep Station', 'Prep Station'),
+        ('HPLC-Plus', 'HPLC-Plus'),
+    ]
+
+    device = models.CharField(max_length=100, choices=DEVICE_CHOICES)
     configuration = models.TextField()
     customer_name = models.CharField(max_length=100)
     order_date = models.DateField()
