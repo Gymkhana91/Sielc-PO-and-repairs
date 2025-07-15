@@ -58,3 +58,4 @@ tqdm==4.66.5
 tzdata==2025.2
 urllib3==1.26.6
 watchdog==5.0.3
+whitenoise
