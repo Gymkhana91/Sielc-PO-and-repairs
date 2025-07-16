@@ -1,18 +1,11 @@
 services:
   - type: web
-    name: sielc-repair-app
+    name: sielc-po-and-repairs
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: >
-     bash -c "
-      python manage.py migrate &&
-      python manage.py shell < create_superuser.py &&
-      gunicorn repair_project.wsgi:application
-     "  
-    envVars:
-      - key: DJANGO_SETTINGS_MODULE
-        value: repair_project.settings
-      - key: DATABASE_URL
-        fromDatabase:
-          name: sielc-db
-          property: connectionString
+    buildCommand: |
+      pip install -r requirements.txt
+      python run_migrations.py
+    startCommand: gunicorn repair_project.wsgi:application
+
+
+
