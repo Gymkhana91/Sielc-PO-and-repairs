@@ -6,16 +6,26 @@ class Device(models.Model):
     def __str__(self):
         return self.name
 
-class Configuration(models.Model):
+
+class ConfigurationType(models.Model):
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return f"{self.device.name} – {self.name}"
+
+
+class ConfigurationOption(models.Model):
+    config_type = models.ForeignKey(ConfigurationType, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.config_type.name}: {self.name}"
+
 
 class Order(models.Model):
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
-    configurations = models.ManyToManyField(Configuration)
+    configurations = models.ManyToManyField(ConfigurationOption)
     customer_name = models.CharField(max_length=100)
     order_date = models.DateField()
 
