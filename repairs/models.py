@@ -1,21 +1,32 @@
 from django.db import models
+from smart_selects.db_fields import ChainedForeignKey
 
+class Device(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Configuration(models.Model):
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 class Order(models.Model):
-    DEVICE_CHOICES = [
-        ('Alltesta Gradient', 'Alltesta Gradient'),
-        ('Alltesta Isocratic', 'Alltesta Isocratic'),
-        ('Cromite Isocratic', 'Cromite Isocratic'),
-        ('Cromite Gradient', 'Cromite Gradient'),
-        ('OEM Autosampler', 'OEM Autosampler'),
-        ('OEM Syringe Pump HPLC', 'OEM Syringe Pump HPLC'),
-        ('OEM UV Detector', 'OEM UV Detector'),
-        ('Standalone Syringe', 'Standalone Syringe'),
-        ('Standalone Valve', 'Standalone Valve'),
-    ]
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
 
-    device = models.CharField(max_length=100, choices=DEVICE_CHOICES)
-    configuration = models.TextField()
+    configuration = ChainedForeignKey(
+        Configuration,
+        chained_field="device",
+        chained_model_field="device",
+        show_all=False,
+        auto_choose=True,
+        sort=True,
+        on_delete=models.CASCADE,
+    )
+
     customer_name = models.CharField(max_length=100)
     order_date = models.DateField()
 

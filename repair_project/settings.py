@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'repairs',
+    'smart_selects'
 ]
 
 MIDDLEWARE = [
@@ -116,6 +117,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+USE_DJANGO_JQUERY = True
 
 
 # Static files (CSS, JavaScript, Images)
