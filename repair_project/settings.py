@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'repairs',
-    'smart_selects'
+    'smart_selects',
+    'orders',
 ]
 
 MIDDLEWARE = [
