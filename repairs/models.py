@@ -3,10 +3,15 @@ from django.db import models
 
 class Order(models.Model):
     DEVICE_CHOICES = [
-        ('xxz', 'LC'),
-        ('GC-2020', 'GC-2020'),
-        ('Prep Station', 'Prep Station'),
-        ('HPLC-Plus', 'HPLC-Plus'),
+        ('Alltesta Gradient', 'Alltesta Gradient'),
+        ('Alltesta Isocratic', 'Alltesta Isocratic'),
+        ('Cromite Isocratic', 'Cromite Isocratic'),
+        ('Cromite Gradient', 'Cromite Gradient'),
+        ('OEM Autosampler', 'OEM Autosampler'),
+        ('OEM Syringe Pump HPLC', 'OEM Syringe Pump HPLC'),
+        ('OEM UV Detector', 'OEM UV Detector'),
+        ('Standalone Syringe', 'Standalone Syringe'),
+        ('Standalone Valve', 'Standalone Valve'),
     ]
 
     device = models.CharField(max_length=100, choices=DEVICE_CHOICES)
